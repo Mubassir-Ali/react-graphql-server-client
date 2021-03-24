@@ -1,29 +1,35 @@
-import React from 'react'
-import {gql,useQuery} from '@apollo/client'
+import React from "react";
+import { gql, useQuery } from "@apollo/client";
 
-const getBookQuery=gql`
-{
-    books{
-        name
-        id
+const getBookQuery = gql`
+  {
+    books {
+      name
+      id
     }
-}
-`
-
-
+  }
+`;
 
 const BookList = () => {
-   const {loading, error, data} = useQuery(getBookQuery)
-   console.log(data);
-    return (
-        <div>
-        <ul id="book-list">
-            <li>Book Name</li>
-        </ul>
-      
-            
-        </div>
-    )
-}
+  const { loading, error, data } = useQuery(getBookQuery);
+  let bList = [];
+  if (loading === false) {
+    const { books } = data;
+    bList=books
+  }
 
-export default BookList
+  return (
+    <div>
+      {loading ? (
+        "Loading"
+      ) : (
+       
+          {bList.map(({ name, id },index) => (
+            <p key={index}>{name}</p>
+          ))}
+      
+      )}
+    </div>
+  );
+};
+export default BookList;

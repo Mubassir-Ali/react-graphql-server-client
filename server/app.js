@@ -12,7 +12,7 @@ app.use(cors())
 
 
 // connect to the mlab database
-mongoose.connect('mongodb+srv://mubassir:test123456@cluster0.bpw5b.mongodb.net/GraphqlDB?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://mubassir:test123456@cluster0.lsili.mongodb.net/gql-mongoDB?retryWrites=true&w=majority')
 mongoose.connection.once('open',()=>{
     console.log('connected to database')
 })
